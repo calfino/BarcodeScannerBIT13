@@ -4,22 +4,20 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.ImageView;
 
 import com.google.android.gms.common.api.CommonStatusCodes;
-import com.google.android.gms.vision.barcode.Barcode;
-
-import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 public class MainActivity extends AppCompatActivity {
 
     EditText barcodeResultTxt;
     EditText modelBarcodeResultTxt;
     EditText wlanBarcodeResultTxt;
+    ImageView imageViewer;
     String type;
 
     @Override
@@ -31,7 +29,13 @@ public class MainActivity extends AppCompatActivity {
         barcodeResultTxt = (EditText) findViewById(R.id.serialBarcodeResult);
         modelBarcodeResultTxt = (EditText) findViewById(R.id.modelBarcodeResult);
         wlanBarcodeResultTxt = (EditText) findViewById(R.id.wlanBarcodeResult);
+        imageViewer = (ImageView) findViewById(R.id.imageView);
 
+        Bundle extras = getIntent().getExtras();
+        if(extras != null && extras.containsKey("uriImage")){
+            String temp = extras.getString("uriImage");
+            imageViewer.setImageURI(Uri.parse(temp));
+        }
     }
 
     public void scanModelBarcodeOnClick(View v){
