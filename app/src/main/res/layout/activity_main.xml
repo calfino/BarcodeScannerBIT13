@@ -6,21 +6,72 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/scanBarcodeBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="scanBarcodeOnClick"
-        android:text="Scan Barcode"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/barcodeResult"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/serialLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/serialBarcodeResult"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:hint="Serial Number"/>
+
+            <Button
+                android:id="@+id/scanSerialBarcodeBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="scanSerialBarcodeOnClick"
+                android:text="Scan" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/modelLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/serialLayout">
+
+            <EditText
+                android:id="@+id/modelBarcodeResult"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:hint="Model Number"/>
+
+            <Button
+                android:id="@+id/scanModelBarcodeBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="scanModelBarcodeOnClick"
+                android:text="Scan" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/wlanLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/modelLayout">
+
+            <EditText
+                android:id="@+id/wlanBarcodeResult"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:hint="WLAN Number"/>
+
+            <Button
+                android:id="@+id/scanWlanBarcodeBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="scanWlanBarcodeOnClick"
+                android:text="Scan" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

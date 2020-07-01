@@ -2,10 +2,12 @@ package com.android.barcodescanner;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -19,71 +21,63 @@ import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
+import com.google.zxing.Result;
 
 import java.io.IOException;
 
-public class ScanBarcodeActivity extends Activity {
+import me.dm7.barcodescanner.zxing.ZXingScannerView;
+
+public class ScanBarcodeActivity extends Activity implements ZXingScannerView.ResultHandler{
 
     SurfaceView cameraResultView;
+    ZXingScannerView mScannerView;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_scan_barcode);
-
-        cameraResultView = (SurfaceView)findViewById(R.id.cameraPreview);
-        createCameraSource();
+//        setContentView(R.layout.activity_scan_barcode);
+//
+//        cameraResultView = (SurfaceView)findViewById(R.id.cameraPreview);
+//        createCameraSource();
+        mScannerView = new ZXingScannerView(this);
+        setContentView(mScannerView);
     }
 
-    private void createCameraSource(){
-        final BarcodeDetector barcodeDetector = new BarcodeDetector.Builder(this).build();
-        final CameraSource cameraSource = new CameraSource.Builder(this,barcodeDetector)
-                .setAutoFocusEnabled(true)
-                .setRequestedPreviewSize(1600,1024)
-                .build();
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mScannerView.setResultHandler(this);
+        mScannerView.startCamera();
+    }
 
-        cameraResultView.getHolder().addCallback(new SurfaceHolder.Callback() {
-            @Override
-            public void surfaceCreated(SurfaceHolder holder) {
-                if (ContextCompat.checkSelfPermission(ScanBarcodeActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mScannerView.stopCamera();
+    }
 
-                    ActivityCompat.requestPermissions(ScanBarcodeActivity.this, new String[] {Manifest.permission.CAMERA}, 1);
-                }
-                try {
-                    cameraSource.start(cameraResultView.getHolder());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        finish();
+    }
 
-            @Override
-            public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+    @Override
+    public void handleResult(Result result) {
+//        Log.v("TAG", result.getText()); // Prints scan results
+//        Log.v("TAG", result.getBarcodeFormat().toString());
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        builder.setTitle("Scan Result");
+//        builder.setMessage(result.getText());
+//        AlertDialog alert1 = builder.create();
+//        alert1.show();
 
-            }
-
-            @Override
-            public void surfaceDestroyed(SurfaceHolder holder) {
-                cameraSource.stop();
-            }
-        });
-
-        barcodeDetector.setProcessor(new Detector.Processor<Barcode>() {
-            @Override
-            public void release() {
-
-            }
-
-            @Override
-            public void receiveDetections(Detector.Detections<Barcode> detections) {
-                final SparseArray<Barcode> barcodes = detections.getDetectedItems();
-
-                if(barcodes.size() > 0){
-                    Intent intent = new Intent();
-                    intent.putExtra("barcode",barcodes.valueAt(0));
-                    setResult(CommonStatusCodes.SUCCESS,intent);
-                    finish();
-                }
-            }
-        });
+        if(result.getText() != null) {
+            Intent intent = new Intent();
+            intent.putExtra("barcode", result.getText());
+            setResult(CommonStatusCodes.SUCCESS, intent);
+            finish();
+        }
     }
 }
