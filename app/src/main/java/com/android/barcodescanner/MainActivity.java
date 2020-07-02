@@ -24,9 +24,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD
         setContentView(R.layout.activity_main);
         DatabaseHelper barcodeResultDB;
         barcodeResultDB= new DatabaseHelper(this);
+=======
+        setContentView(R.layout.activity_home);
+>>>>>>> 7e3209505eaee80ae100dba1e3d87169d2097ea4
 
         type = "";
         barcodeResultTxt = (EditText) findViewById(R.id.serialBarcodeResult);
