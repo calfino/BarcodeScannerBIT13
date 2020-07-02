@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void cancelBtnOnClick(View v){
+    public void cancelBtnOnClick(){
         barcodeResultTxt.setText("");
         modelBarcodeResultTxt.setText("");
         wlanBarcodeResultTxt.setText("");
