@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".screen_form">
+    tools:context=".MainActivity">
 
     <ImageView
         android:id="@+id/imgViewImage"
@@ -78,7 +78,7 @@
         app:layout_constraintTop_toBottomOf="@+id/button" />
 
     <EditText
-        android:id="@+id/txtModelNumber"
+        android:id="@+id/modelBarcodeResult"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -95,11 +95,11 @@
         app:layout_constraintTop_toBottomOf="@+id/lblModelNumber" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/scanModelBarcodeBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Scan"
-        app:layout_constraintBottom_toBottomOf="@+id/txtModelNumber"
+        app:layout_constraintBottom_toBottomOf="@+id/modelBarcodeResult"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
@@ -113,10 +113,10 @@
         android:textColor="@android:color/black"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtModelNumber" />
+        app:layout_constraintTop_toBottomOf="@+id/modelBarcodeResult" />
 
     <EditText
-        android:id="@+id/txtSerialNumber"
+        android:id="@+id/serialBarcodeResult"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -132,11 +132,11 @@
         app:layout_constraintTop_toBottomOf="@+id/lblSerialNumber" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/scanSerialBarcodeBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Scan"
-        app:layout_constraintBottom_toBottomOf="@+id/txtSerialNumber"
+        app:layout_constraintBottom_toBottomOf="@+id/serialBarcodeResult"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
@@ -150,10 +150,10 @@
         android:textColor="@android:color/black"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtSerialNumber" />
+        app:layout_constraintTop_toBottomOf="@+id/serialBarcodeResult" />
 
     <EditText
-        android:id="@+id/txtWlanMac"
+        android:id="@+id/wlanBarcodeResult"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -169,11 +169,11 @@
         app:layout_constraintTop_toBottomOf="@+id/lblWlanMac" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/scanWlanBarcodeBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Scan"
-        app:layout_constraintBottom_toBottomOf="@+id/txtWlanMac"
+        app:layout_constraintBottom_toBottomOf="@+id/wlanBarcodeResult"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
@@ -187,7 +187,7 @@
         android:textColor="@android:color/black"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtWlanMac" />
+        app:layout_constraintTop_toBottomOf="@+id/wlanBarcodeResult" />
 
     <EditText
         android:id="@+id/txtBoxNumber"
@@ -233,4 +233,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText" />
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

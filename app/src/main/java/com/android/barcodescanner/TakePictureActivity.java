@@ -26,7 +26,7 @@ public class TakePictureActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_take_picture);
+        setContentView(R.layout.activity_home);
 
         captureBtn = findViewById(R.id.captureBtn);
 
