@@ -20,10 +20,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity"
-            android:label="Main Activity">
+            android:label="Barcode Scanner">
         </activity>
         <activity android:name=".ScanBarcodeActivity"
-            android:label="Scan Barcode" />
+            android:label="Barcode Scanner" />
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />

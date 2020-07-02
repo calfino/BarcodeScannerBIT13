@@ -18,18 +18,22 @@ public class MainActivity extends AppCompatActivity {
     EditText modelBarcodeResultTxt;
     EditText wlanBarcodeResultTxt;
     ImageView imageViewer;
+    EditText boxNumberText;
+    EditText notesText;
     String type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_screen_form);
 
         type = "";
         barcodeResultTxt = (EditText) findViewById(R.id.serialBarcodeResult);
         modelBarcodeResultTxt = (EditText) findViewById(R.id.modelBarcodeResult);
         wlanBarcodeResultTxt = (EditText) findViewById(R.id.wlanBarcodeResult);
         imageViewer = (ImageView) findViewById(R.id.imageView);
+        boxNumberText = (EditText) findViewById(R.id.boxNumberTxt);
+        notesText = (EditText) findViewById(R.id.notesTxt);
 
         Bundle extras = getIntent().getExtras();
         if(extras != null && extras.containsKey("uriImage")){
@@ -51,6 +55,31 @@ public class MainActivity extends AppCompatActivity {
     public void scanWlanBarcodeOnClick(View v){
         type = "WLAN";
         scanActivity(v);
+    }
+
+    public void submitBtnOnClick(View v){
+        //insert data to database
+
+
+
+
+
+
+        Intent intent = new Intent(MainActivity.this, TakePictureActivity.class);
+        startActivity(intent);
+    }
+
+    public void cancelBtnOnClick(View v){
+        barcodeResultTxt.setText("");
+        modelBarcodeResultTxt.setText("");
+        wlanBarcodeResultTxt.setText("");
+        boxNumberText.setText("");
+        notesText.setText("");
+    }
+
+    public void retakeBtnOnClick(View v){
+        Intent intent = new Intent(this,TakePictureActivity.class);
+        startActivityForResult(intent,0);
     }
 
     private void scanActivity(View v){
