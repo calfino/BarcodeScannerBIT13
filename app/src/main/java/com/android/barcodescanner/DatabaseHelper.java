@@ -56,11 +56,11 @@ public class DatabaseHelper extends SQLiteOpenHelper
         try
         {
             SQLiteDatabase db = this.getWritableDatabase();
-            Bitmap imageToStoreBitmap = product.getPicture();
-
-            arrOut = new ByteArrayOutputStream();
-            imageToStoreBitmap.compress(Bitmap.CompressFormat.JPEG, 100, arrOut);
-            imageInByte = arrOut.toByteArray();
+//            Bitmap imageToStoreBitmap = product.getPicture();
+//
+//            arrOut = new ByteArrayOutputStream();
+//            imageToStoreBitmap.compress(Bitmap.CompressFormat.JPEG, 100, arrOut);
+//            imageInByte = arrOut.toByteArray();
 
             ContentValues contentValues = new ContentValues();
             contentValues.put(COL_2, product.getSerial_Number());
@@ -68,7 +68,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
             contentValues.put(COL_4, product.getModel_Name());
             contentValues.put(COL_5, product.getWLAN_MAC());
             contentValues.put(COL_6, product.getBox_Number());
-            contentValues.put(COL_7, imageInByte);
+//            contentValues.put(COL_7, imageInByte);
 
             long result = db.insert(TABLE_NAME,null, contentValues);
 

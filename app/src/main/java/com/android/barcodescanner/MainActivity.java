@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -20,7 +21,11 @@ public class MainActivity extends AppCompatActivity {
     ImageView imageViewer;
     EditText boxNumberText;
     EditText notesText;
+    Button submit;
+    Button cancel;
     String type;
+    Products products;
+    DatabaseHelper db = new DatabaseHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
         imageViewer = (ImageView) findViewById(R.id.imageView);
         boxNumberText = (EditText) findViewById(R.id.boxNumberTxt);
         notesText = (EditText) findViewById(R.id.notesTxt);
+        submit = (Button) findViewById(R.id.submitBtn);
+        cancel = (Button) findViewById(R.id.cancelBtn);
 
         Bundle extras = getIntent().getExtras();
         if(extras != null && extras.containsKey("uriImage")){
@@ -59,11 +66,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void submitBtnOnClick(View v){
         //insert data to database
-
-
-
-
-
+        products = new Products(1, barcodeResultTxt.toString(), modelBarcodeResultTxt.toString(), notesText.toString(), wlanBarcodeResultTxt.toString(), boxNumberText.toString());
+        db.insertData(products);
 
         Intent intent = new Intent(MainActivity.this, TakePictureActivity.class);
         startActivity(intent);

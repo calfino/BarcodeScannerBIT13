@@ -25,6 +25,16 @@ public class Products
         this.Picture = Picture;
     }
 
+    public Products(int Index_Number, String Serial_Number, String Model_Number, String Model_Name, String WLAN_MAC, String Box_Number)
+    {
+        this.Index_Number = Index_Number;
+        this.Serial_Number = Serial_Number;
+        this.Model_Number = Model_Number;
+        this.Model_Name = Model_Name;
+        this.WLAN_MAC = WLAN_MAC;
+        this.Box_Number = Box_Number;
+    }
+
     // Setter and Getter //
     public int getIndex_Number()
     {
