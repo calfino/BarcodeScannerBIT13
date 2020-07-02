@@ -15,14 +15,14 @@ public class DatabaseHelper extends SQLiteOpenHelper
 {
     // Initialization variable //
     public static final String DATABASE_NAME = "BarcodeScanner.db";
-    public static final String TABLE_NAME = "Products";
-    public static final String COL_1 = "Index_Number";
-    public static final String COL_2 = "Serial_Number";
-    public static final String COL_3 = "Model_Number";
-    public static final String COL_4 = "Model_Name";
-    public static final String COL_5 = "WLAN_MAC";
-    public static final String COL_6 = "Box_Number";
-    public static final String COL_7 = "Picture";
+    public static final String TABLE_NAME = "products";
+    public static final String COL_1 = "index_Number";
+    public static final String COL_2 = "serial_Number";
+    public static final String COL_3 = "model_Number";
+    public static final String COL_4 = "model_Name";
+    public static final String COL_5 = "wlan_mac";
+    public static final String COL_6 = "box_Number";
+    public static final String COL_7 = "picture";
 
     public ByteArrayOutputStream arrOut;
     public byte[] imageInByte;
@@ -33,6 +33,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     {
         super(context, DATABASE_NAME, null, 1);
         this.context = context;
+        SQLiteDatabase db = this.getWritableDatabase();
     }
 
     // Function to create database //
@@ -56,11 +57,11 @@ public class DatabaseHelper extends SQLiteOpenHelper
         try
         {
             SQLiteDatabase db = this.getWritableDatabase();
-            Bitmap imageToStoreBitmap = product.getPicture();
-
-            arrOut = new ByteArrayOutputStream();
-            imageToStoreBitmap.compress(Bitmap.CompressFormat.JPEG, 100, arrOut);
-            imageInByte = arrOut.toByteArray();
+//            Bitmap imageToStoreBitmap = product.getPicture();
+//
+//            arrOut = new ByteArrayOutputStream();
+//            imageToStoreBitmap.compress(Bitmap.CompressFormat.JPEG, 100, arrOut);
+//            imageInByte = arrOut.toByteArray();
 
             ContentValues contentValues = new ContentValues();
             contentValues.put(COL_2, product.getSerial_Number());
@@ -68,7 +69,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
             contentValues.put(COL_4, product.getModel_Name());
             contentValues.put(COL_5, product.getWLAN_MAC());
             contentValues.put(COL_6, product.getBox_Number());
-            contentValues.put(COL_7, imageInByte);
+//            contentValues.put(COL_7, imageInByte);
 
             long result = db.insert(TABLE_NAME,null, contentValues);
 
@@ -101,7 +102,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
             byte[] imageByte = result.getBlob(6);
             Bitmap objBitMap = BitmapFactory.decodeByteArray(imageByte,0,imageByte.length);
 
-            Products product = new Products(Integer.parseInt(result.getString(0)), result.getString(1), result.getString(2),result.getString(3), result.getString(4),result.getString(5), objBitMap);
+            Products product = new Products(Integer.parseInt(result.getString(0)), result.getString(1), result.getString(2),result.getString(3), result.getString(4),result.getString(5));
             result.close();
             return product;
         }
@@ -142,7 +143,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
                     byte[] imageByte = result.getBlob(6);
                     Bitmap objBitMap = BitmapFactory.decodeByteArray(imageByte,0,imageByte.length);
 
-                    listProduct.add(new Products(Index_Number,Serial_Number,Model_Number,Model_Name,WLAN_MAC,Box_Number,objBitMap));
+                    listProduct.add(new Products(Index_Number,Serial_Number,Model_Number,Model_Name,WLAN_MAC,Box_Number));
                     result.close();
                 }
 

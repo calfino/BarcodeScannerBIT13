@@ -5,94 +5,97 @@ import android.graphics.Bitmap;
 public class Products
 {
     // Initialization attributes //
-    int Index_Number;
-    String Serial_Number;
-    String Model_Number;
-    String Model_Name;
-    String WLAN_MAC;
-    String Box_Number;
-    Bitmap Picture;
+    int index;
+    String serial_number;
+    String model_number;
+    String model_name;
+    String wlan_mac;
+    String box_number;
+    Bitmap picture;
 
     // Constructor //
-    public Products(int Index_Number, String Serial_Number, String Model_Number, String Model_Name, String WLAN_MAC, String Box_Number, Bitmap Picture)
+    public Products(int index_number, String serial_number, String model_number, String model_name, String wlan_mac, String box_number)
     {
-        this.Index_Number = Index_Number;
-        this.Serial_Number = Serial_Number;
-        this.Model_Number = Model_Number;
-        this.Model_Name = Model_Name;
-        this.WLAN_MAC = WLAN_MAC;
-        this.Box_Number = Box_Number;
-        this.Picture = Picture;
+        this.index = index;
+        this.serial_number = serial_number;
+        this.model_number = model_number;
+        this.model_name = model_name;
+        this.wlan_mac = wlan_mac;
+        this.box_number = box_number;
+//        this.picture = picture;
     }
+
+
 
     // Setter and Getter //
     public int getIndex_Number()
     {
-        return Index_Number;
+        return index;
     }
 
-    public void setIndex_Number(int Index_Number)
+    public void setIndex_Number(int index)
     {
-        this.Index_Number = Index_Number;
+
+        this.index = index;
     }
 
     public String getSerial_Number()
     {
-        return Serial_Number;
+        return serial_number;
     }
 
-    public void setSerial_Number(String Serial_Number)
+    public void setSerial_Number(String serial_number)
     {
-        this.Serial_Number = Serial_Number;
+        this.serial_number = serial_number;
     }
 
     public String getModel_Number()
     {
-        return Model_Number;
+        return model_number;
     }
 
-    public void setModel_Number(String Model_Number)
+    public void setModel_Number(String model_number)
     {
-        this.Model_Number = Model_Number;
+        this.model_number = model_number;
     }
 
     public String getModel_Name()
     {
-        return Model_Name;
+        return model_name;
     }
 
-    public void setModel_Name(String Model_Name)
+    public void setModel_Name(String model_name)
     {
-        this.Model_Name = Model_Name;
+        this.model_name = model_name;
     }
 
     public String getWLAN_MAC()
     {
-        return WLAN_MAC;
+        return wlan_mac;
     }
 
-    public void setWLAN_MAC(String WLAN_MAC)
+    public void setWLAN_MAC(String wlan_mac)
     {
-        this.WLAN_MAC = WLAN_MAC;
+        this.wlan_mac = wlan_mac;
     }
 
     public String getBox_Number()
     {
-        return Box_Number;
+        return box_number;
     }
 
     public void setBox_Number(String Box_Number)
     {
-        this.Box_Number = Box_Number;
+        this.box_number = box_number;
     }
 
     public Bitmap getPicture()
     {
-        return Picture;
+        return picture;
     }
 
-    public void setPicture(Bitmap Picture)
+    public void setPicture(Bitmap picture)
     {
-        this.Picture = Picture;
+        this.picture = picture;
     }
 }

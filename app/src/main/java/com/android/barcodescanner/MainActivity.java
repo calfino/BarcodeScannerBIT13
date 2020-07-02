@@ -4,11 +4,15 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.api.CommonStatusCodes;
 
@@ -21,25 +25,31 @@ public class MainActivity extends AppCompatActivity {
     EditText boxNumberText;
     EditText notesText;
     String type;
+    DatabaseHelper myDB;
+    Products myProducts;
+    Bitmap image;
+    SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screen_form);
-
-        type = "";
+        myDB = new DatabaseHelper(this);
         barcodeResultTxt = (EditText) findViewById(R.id.serialBarcodeResult);
         modelBarcodeResultTxt = (EditText) findViewById(R.id.modelBarcodeResult);
         wlanBarcodeResultTxt = (EditText) findViewById(R.id.wlanBarcodeResult);
         imageViewer = (ImageView) findViewById(R.id.imageView);
         boxNumberText = (EditText) findViewById(R.id.boxNumberTxt);
         notesText = (EditText) findViewById(R.id.notesTxt);
+//        Bundle extras = getIntent().getExtras();
+//        if(extras != null && extras.containsKey("uriImage")){
+//
+//            String temp = extras.getString("uriImage");
+//            imageViewer.setImageURI(Uri.parse(temp));
+//            imageViewer.setDrawingCacheEnabled(true);
+//            image = imageViewer.getDrawingCache();
+//        }
 
-        Bundle extras = getIntent().getExtras();
-        if(extras != null && extras.containsKey("uriImage")){
-            String temp = extras.getString("uriImage");
-            imageViewer.setImageURI(Uri.parse(temp));
-        }
     }
 
     public void scanModelBarcodeOnClick(View v){
@@ -59,14 +69,16 @@ public class MainActivity extends AppCompatActivity {
 
     public void submitBtnOnClick(View v){
         //insert data to database
-
-
-
-
-
-
+        myProducts = new Products(1,  barcodeResultTxt.toString(), modelBarcodeResultTxt.toString(),notesText.toString(), wlanBarcodeResultTxt.toString(),boxNumberText.toString());
+        Log.i("check data barcode", barcodeResultTxt.toString());
+        System.out.println("barcode:" + barcodeResultTxt.toString());
+//       myDB.insertData(myProducts);
         Intent intent = new Intent(MainActivity.this, TakePictureActivity.class);
         startActivity(intent);
+    }
+
+    public void AddData(){
+
     }
 
     public void cancelBtnOnClick(View v){
